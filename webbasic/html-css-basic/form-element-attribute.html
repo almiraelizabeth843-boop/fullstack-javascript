@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Form Element Attributes</title>
+    </head>
+    <body>
+        <h2>Autofocus</h2>
+        <input type="text" autofocus/>
+
+        <h2>Disabled</h2>
+        <input type="text" value="I'm diasbled input" disabled/><br/><br/>
+        <textarea disabled>I'm a disabled text area</textarea>
+
+        <h2>Max</h2>
+        <form action="page-handler.html">
+            <input type="date" max="2025-09-17"/>
+            <input type="number" max="17"/>
+            <input type="submit"/>
+        </form>
+
+        <h2>maxlength</h2>
+        <label>
+            The input below only alows a maximun of 5 characters
+            <input type="text" maxlength="5"/>
+        </label>
+
+        <h2>min</h2>
+        <form action="page-handler.html">
+            <input type="date" min="2007-08-20"/><br/>
+            <input type="number" min="8"/>
+            <input type="submit"/>
+        </form>
+
+
+        <h2>minlength</h2>
+        <p>The input below only alows a minimun of 5 characters</p>
+        <form action="page-handler.html">
+            <input type="text" minlength="5"/>
+            <input type="submit"/>
+        </form>
+
+
+        <h2>multiple</h2>
+        <p>The user can now can select the multiple file</p>
+        <input type="file" multiple/>
+
+
+        <h2>name</h2>
+        <p>After submitting form the below, 
+            page handler can get the value with name
+        </p>
+        <form action="page-handler.html">
+            <input type="text" name="full-name"/>
+            <input type="submit"/>
+        </form>
+
+        <h2>pattern</h2>
+        <p>Try to fill the text field with non-alphanumeric value</p>
+        <form action="page-handler.html">
+            <input type="text" pattern="[a-zA-Z0-9]+" title="Alphanumeric Values only"/><br/><br/>
+            <input type="submit"/>
+        </form>
+
+
+        <h2>placeholder</h2>
+        <input type="text" placeholder="Enter name"/>
+
+
+        <h2>readonly</h2>
+        <input type="text" value="I'm read only text box" readonly/>
+        <textarea readonly>Read only textarea</textarea>
+
+
+        <h2>required</h2>
+        <form action="page-handler.html">
+            <input type="text" required/>
+            <input type="submit"/>
+        </form><br/><br/>
+
+        <h2>spellcheck</h2>
+        <textarea spellcheck="true"></textarea>
+
+
+        <h2>wrap</h2>
+        <label>
+            Hard value<textarea wrap="hard"></textarea>
+        </label><br/><br/>
+        <label>
+            Soft value<textarea wrap="soft"></textarea>
+        </label>
+
+
+    </body>
+</html>

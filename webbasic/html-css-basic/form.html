@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>HTML Form</title>
+        <style type="text/css">
+            label{
+                border: 1px solid brown;
+                border-radius: 3px;
+                background-color: bisque;
+                color: chocolate;
+                padding-left: 4px;
+                padding-right: 5px;
+                margin-right: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Form Example</h2>
+        <form action="page-handler.html" method="get">
+            <input type="text" name="full-name" placeholder="Full name"/><br><br>
+            <input type="text" name="age" placeholder="Age"/><br><br>
+            <input type="text" name="hobby" placeholder="Hobby"/><br><br>
+            <input type="submit"/>
+        </form>
+        <h2>Form Label</h2>
+        <label for="demo">First name:</label>
+        <input type="text" id="demo" placeholder="first name"/>
+    </body>
+</html>

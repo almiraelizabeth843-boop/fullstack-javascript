@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="author" content="Leonor Programming"/>
+        <meta name="title" content="A Webpage that can learn programming"/>
+        <meta name="description" content="A description shown below title"/>
+        <meta name="keywords" content="html, html tutorial, learn html"/>
+        <title>Final part1+2</title>
+        <style type="text/css">
+            .btn{
+                border: none;
+                background-color: rgb(87, 202, 212);
+                border-radius: 5px;
+                color: white;
+                padding: 5px;
+                font-weight: bold;
+                font-size: 20px;
+                text-transform: uppercase;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>button</h2>
+        <form action="page-handler.html">
+            <input type="text"/>
+            <button>Submit</button>
+        </form>
+
+        <h2>Resetting form control value using a button</h2>
+        <form action="page-handler.html">
+            <label>
+                Name:
+                <input type="text"/>
+            </label>
+            <label>
+                Age:
+                <input type="text"/>
+            </label><br/><br/>
+            <button type="reset">Reset</button>
+            <button type="submit">Submit</button>
+        </form>
+
+        <h2>Button Styling</h2>
+        <button class="btn">Click Me</button>
+
+
+        <h2>Button disabled</h2>
+        <button disabled>I'm disabled button</button>
+
+        <h2>content Editable</h2>
+        <p contenteditable>Hi I'm editable</p>
+        
+
+        <h2>Remove outline from contenteditable</h2>
+        <p contenteditable style="outline: none;">Hi I'm editable with removing outline</p>
+
+        <h2>HTML Meta</h2>
+        <h2>Webpage responsive with HTML meta</h2>
+        <img src="images/133981971099211053.jpg" style="width: 100%;"/>
+
+
+        <h2>Search engine Optimization (SEO)with HTML META</h2>
+        <!--Coded in head section-->
+
+
+        <h2>Block quote</h2>
+        <blockquote cite="https://www.goalcast.com/2017/12/07/27-bill-gate-quotes/">
+            If all my bridge coach ever told me that I was 'satifactory'...
+        </blockquote>
+        <cite style="float: right;">-Bill Gates</cite>
+
+
+
+        <h2>nbsp - none breaking space</h2>
+        <p>They are so &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; far away</p>
+
+
+        <h2>Subscript text</h2>
+        <p>N <sub>2</sub> + H <sub>2</sub> &rarr; NH <sub>3</sub> </p>
+
+
+        <h2>Superscript</h2>
+        <p>(x + 2) (x<sup>2</sup>+3) =</p>
+
+        
+        <h2>Pre Element</h2>
+        <pre>
+            My
+            name
+            is 
+            Leonor.
+        </pre>
+
+
+        <h2>Figure</h2>
+        <figure>
+            <img src="images/133981971099211053.jpg" style="width: 200px; height: 100px;"/>
+            <figcaption>Figure 1.1 caption</figcaption>
+        </figure>
+
+
+        <h2>Character Entities</h2>
+        <!--Entities က နာမည်နဲ့လဲရေးလို့ရသလို ကုဒ်နဲ့လဲရေးလို့ရ-->
+        <p>Copy right: &copy;</p> <!--name-->
+        <p>Copy right: &#169;</p> <!--code-->
+
+
+        <h2>audios</h2>
+        <p>Audio Attributes</p>
+        <ul>
+            <li>autoplay</li>
+            <li>controls</li>
+            <li>loop</li>
+            <li>muted</li>
+            <li>src</li>
+        </ul>
+        <h2>autoplay</h2>
+        <audio src="files/10 - favourite crime.flac"controls ></audio>
+
+        <h2>controls</h2>
+        <audio src="files/10 - favourite crime.flac" controls loop muted></audio>
+
+        <h2>Using source Element</h2>
+        <audio controls>
+            <source src="files/10 - favourite crime.flac" type="audio/flac">
+        </audio>
+
+
+        <h2>video and its attributes</h2>
+        <ul>
+            <li>controls</li>
+            <li>autoplay</li>
+            <li>height</li>
+            <li>loop</li>
+            <li>muted</li>
+            <li>width</li>
+            <li>poster</li>
+            <li>src</li>
+        </ul>
+
+        <video src="files/video_2025-11-13_21-03-30.mp4" controls width="480" height="360" ></video>
+        <video controls width="480" height="360" poster="images/133976346883337026.jpg">
+            <source src="files/video_2025-11-13_21-03-30.mp4" type="video/mp4">
+        </video>
+        
+
+        <h2>Iframe</h2>
+        <iframe src="index2.html" width="400" height="300"></iframe>
+
+
+        <h2>Youtube Video</h2>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/uV5MuPlxwm4?si=6i7gYF8W7xT0McUR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+        <div style="height: 100px;"></div>
+    </body>
+</html>

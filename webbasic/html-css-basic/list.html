@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List HTML</title>
+    <style type="text/css">
+      #ul-circle{
+        list-style-type: circle;
+      }
+
+      #ul-square{
+        list-style-type: square;
+      }  
+      #ol-lower-alpha{
+        list-style-type: lower-alpha;
+      }
+      #ol-upper-roman{
+        list-style-type: upper-roman;
+      }
+      #no-list-style{
+        list-style-type: none;
+      }
+      #change-color-and-bullet{
+        list-style: none;
+      }
+      #change-color-and-bullet li::before{
+        content: '->';
+        color: red;
+      }
+
+    </style>
+  </head>
+  <body>
+    <h2>Simple HTML List</h2>
+    <p>Unordered Fruit List</p>
+    <ul>
+      <li>Apple</li>
+      <li>Orange</li>
+      <li>Grape</li>
+    </ul>
+    <p>Ordered Fruil list</p>
+    <ol>
+      <li>Apple</li>
+      <li>Orange</li>
+      <li>Grape</li>
+    </ol>
+    <h2>Nested List</h2>
+    <ul>
+      <li>List item 1</li>
+      <li>List item 2
+          <ul>
+            <li>sublist item 1</li>
+            <li>sublist item 2</li>
+          </ul>
+      </li>
+      <li>List item 3</li>
+    </ul>
+    <ul id="ul-circle">
+      <li>Item 1</li>
+      <li>Item 2</li>
+      <li>Item 3</li>
+    </ul>
+    <ul id="ul-square">
+      <li>Item 1</li>
+      <li>Item 2</li>
+      <li>Item 3</li>
+    </ul>
+    <ol id="ol-lower-alpha">
+      <li>Item 1</li>
+      <li>Item 2</li>
+      <li>Item 3</li>
+    </ol>
+    <ol id="ol-upper-roman">
+      <li>Item 1</li>
+      <li>Item 2</li>
+      <li>Item 3</li>
+    </ol>
+    <ul id="no-list-style">
+      <li>Item 1</li>
+      <li>Item 2</li>
+      <li>Item 3</li>
+    </ul>
+    <h2>Change coloer and bullet</h2>
+    <ul id="change-color-and-bullet">
+      <li>Item 1</li>
+      <li>Item 2</li>
+      <li>Item 3</li>
+    </ul>
+
+    <h2>Description List</h2>
+    <dl>
+      <dt>HTML</dt>
+      <dd>
+        HTML is Hyper Text Markup Language and used for building webpage
+      </dd>
+      <dt>CSS</dt>
+      <dd>
+        CSS is Cascading Style Sheet and used for styling HTML elements
+      </dd>
+      
+    </dl>
+  </body>
+</html>

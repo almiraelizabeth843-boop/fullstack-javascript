@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Javascript</title>
+  </head>
+  <body>
+    <h2>Dynamic Content Example</h2>
+    <p id="p-demo">Hello World</p>
+    <button onclick="changeContent();">Change Content</button>
+
+    <h2>Dynamic Style Example</h2>
+    <p id="p2-demo">Hello World!</p>
+    <button onclick="changeStyle();">Change Style</button>
+
+    <h2>Hiding and Showing Example</h2>
+    <div id="hide-and-show" style="width: 200px;height: 200px;background-color: aqua;">
+      I'm a content of Div
+    </div>
+    <br>
+    <button onclick="show();">Show Div</button>
+    <button onclick="hide();">Hide Div</button>
+
+    <h2>Dynamic Image Example</h2>
+    <img id="change-img" src="images/133989671241907142.jpg" style="width: 100px;height: 150px;"/>
+    <br>
+    <button onclick="changeImage();">Change Image</button>
+
+    <!--This is Javascript Codes-->
+    <script type="text/Javascript">
+      
+      function changeContent(){
+        document.getElementById("p-demo").innerText = "I love coding";
+      }
+
+      function changeStyle(){
+        document.getElementById("p2-demo").style.fontSize = "20px";
+        document.getElementById("p2-demo").style.color = "gold";
+        document.getElementById("p2-demo").style.fontStyle = "Italic";
+      }
+
+      function show(){
+        document.getElementById("hide-and-show").style.display = "block";
+      }
+      function hide(){
+        document.getElementById("hide-and-show").style.display = "none";
+      }
+
+      function changeImage(){
+        document.getElementById("change-img").src="images/133981971099211053.jpg";
+      }
+
+    </script>
+    
+  </body>
+</html>

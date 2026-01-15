@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Examples</title>
+    <style type="text/css">
+      .tbl3,.tbl3 td{
+        border: 1px solid black;
+        border-spacing: 5px;
+      }
+      .tbl3 td{
+        padding: 5px;
+      }
+      .tbl4, .tbl4 th, .tbl4 td{
+        border-collapse: collapse;
+        border: 1px solid black;
+
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Example 1</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>First heading Column</th>
+          <th>Last heading Column</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Ko Ko</td>
+          <td>Thel Thel</td>
+        </tr>
+        <tr>
+          <td>Kyaw Kyaw</td>
+          <td>Mya Mya</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>Total</td>
+          <td>4</td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <h2>Example 2</h2>
+    <table style="background-color: silver;width: 80%; margin: 0 auto;border: 2px solid black;">
+      <colgroup>
+        <col style="background-color: aliceblue">
+        <col style="background-color: aqua;">
+        <col style="background-color: blueviolet;">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>First name</th>
+          <th>Last name</th>
+          <th>Nationality</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Wei</td>
+          <td>Tun</td>
+          <td>Myanmar</td>
+        </tr>
+        <tr>
+          <td>John</td>
+          <td>Wick</td>
+          <td>United State</td>
+        </tr>
+      </tbody>
+    </table>
+    <h2>Example 3</h2>
+    <table class="tbl3">
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Nationality</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Wei</td>
+          <td>Tun</td>
+          <td>Myanmar</td>
+        </tr>
+        <tr>
+          <td>John</td>
+          <td>Wick</td>
+          <td>United State</td>
+        </tr>
+      </tbody>
+    </table>
+    <h2>Example 4- Collapsing HTML Table</h2>
+    <table class="tbl4">
+      <thead>
+        <tr>
+          <th colspan="3">Employees</th>
+        </tr>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Nationality</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Wei</td>
+          <td>Tun</td>
+          <td>Myanmar</td>
+        </tr>
+        <tr>
+          <td>John</td>
+          <td>Wick</td>
+          <td rowspan="2">United State</td>
+        </tr>
+         <tr>
+          <td>John</td>
+          <td>Doe</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

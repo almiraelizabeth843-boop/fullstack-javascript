@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Form Input Type</title>
+        <style type="text/css">
+            textarea{
+                background-color: antiquewhite;
+                color: brown;
+                border: none;
+                outline: none;
+                resize: none;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Text</h2>
+        <input type="text" id="text-demo"/><br/><br/>
+        <button onclick="getTextValue();">Get value</button>
+
+        <h2>Checkbox</h2>
+        <input type="checkbox" id="checkbox-demo"/><br/><br/>
+        <button onclick="getCheckBoxValue();">Get Value</button>
+
+        <h2>Color</h2>
+        <input type="color" id="color-demo"/><br/><br/>
+        <button onclick="getColorValue();">Get value</button>
+
+        <h2>Date</h2>
+        <input type="date" id="date-demo"/><br/><br/>
+        <button onclick="getDtaeValue();">Get Value</button>
+
+
+        <h2>Date Time Local</h2>
+        <input type="datetime-local" id="datetime-demo"/><br/><br/>
+        <button onclick="getDateTime();">Get Value</button>
+
+        <h2>Email</h2>
+        <p>Try entering an invalid email and click submit</p>
+        <form action="page-handler.html">
+            <input type="email" id="email-demo"/>
+            <input type="submit"/>
+        </form><br/><br/>
+        <button onclick="getEmail();">Get Value</button>
+
+        
+        <h2>File</h2>
+        <input type="file" id="file-demo" onchange="readfile();"/>
+        <img src="" alt="Image will be shown in here!" id="selected-img-result" style="width: 50%;"/>
+        
+        <h2>Hidden</h2>
+        <input type="hidden" id="hidden-demo" value="I'm hidden"/><br/>
+        <button onclick="getHiddenValue();">Get Value</button>
+
+        <h2>Month</h2>
+        <input type="month" id="month-demo"/><br/><br/>
+        <button onclick="getMonthValue();">Get Value</button>
+
+        <h2>Number</h2>
+        <p>Try entering an invalid number and click submit</p>
+        <form action="page-handler.html">
+            <input type="number" id="number-demo"/><br/>
+            <input type="submit"/>
+        </form>
+        <button onclick="getNumberValue();">Get Value</button>
+
+        <h2>Password</h2>
+        <input type="password" id="pass-demo"/>
+        <button onclick="getPassValue();">Get Value</button>
+
+        <h2>Radio</h2>
+        <input type="radio" name="gender" value="Male" id="male"/>
+        <label for="male">Male</label>
+        <input type="radio" name="gender" value="Female" id="female"/>
+        <label for="female">Female</label><br/><br/>
+        <button onclick="getGenderValue();">Get Value</button>
+
+        <h2>Range</h2>
+        <input type="range" id="range-demo"/><br/><br/>
+        <button onclick="getRangeValue();">Get Value</button>
+
+        <h2>Search</h2>
+        <input type="search" id="search-demo"/><br/><br>
+        <button onclick="getSearchValue();">Get Value</button>
+
+        <h2>Tel</h2>
+        <input type="tel" id="tel-demo"/><br/><br/>
+        <button onclick="getTelValue();">Get Value</button>
+
+        <h2>Time</h2>
+        <input type="time" id="time-demo"/><br/></br/>
+        <button onclick="getTimeValue();">Get Value</button>
+
+        <h2>URL</h2>
+        <p>Try entering the invalid URl and click submit</p>
+        <form action="page-handler.html">
+            <input type="url" id="url-demo"/>
+            <input type="submit"/>
+        </form><br/><br/>
+        <button onclick="getURLValue();">Get value</button>
+
+
+        <h2>Week</h2>
+        <input type="week" id="week-demo"/><br/><br/>
+        <button onclick="getWeekValue();">Get value</button>
+
+
+        <h2>Textarea</h2>
+        <textarea rows="3" cols="20" placeholder="Enter your comment"></textarea>
+
+
+        <h2>Dropdown List</h2>
+        <select id="dropdown-demo">
+            <option value="apple">Apple</option>
+            <option value="orange">Orange</option>
+            <option value="Grape">Grape</option>
+        </select>
+        <button onclick="getDropValue();">Get Value</button>
+
+        <h2>Multiple Section-Dropdown List</h2>
+        <select id="multi-dropdown-demo" multiple>
+            <option value="apple">Apple</option>
+            <option value="orange">Orange</option>
+            <option value="Grape">Grape</option>
+        </select>
+        <button onclick="getMultiValue();">Get Value</button>
+
+
+
+        <script type="text/javascript">
+            function getTextValue(){
+                alert(document.getElementById("text-demo").value);
+            }
+
+            function getCheckBoxValue(){
+                alert(document.getElementById("checkbox-demo").checked);
+            }
+
+            function getColorValue(){
+                alert(document.getElementById("color-demo").value);
+            }
+
+            function getDtaeValue(){
+                alert(document.getElementById("date-demo").value);
+            }
+
+            function getDateTime(){
+                alert(document.getElementById("datetime-demo").value);
+            }
+
+            function getEmail(){
+                alert(document.getElementById("email-demo").value);
+            }
+
+            function readfile(){
+                var reader = new FileReader();
+                var fileElement = document.getElementById("file-demo").files[0];
+                
+                reader.onload = function(e){
+                    document.getElementById("selected-img-result").src = e.target.result;
+                }
+
+                reader.readAsDataURL(fileElement);
+            }
+
+            function getHiddenValue(){
+                alert(document.getElementById("hidden-demo").value);
+            }
+
+            function getMonthValue(){
+                alert(document.getElementById("month-demo").value);
+            }
+
+            function getNumberValue(){
+                alert(document.getElementById("number-demo").value);
+            }
+
+            function getPassValue(){
+                alert(document.getElementById("pass-demo").value);
+            }
+
+            function getGenderValue(){
+                var radios = document.getElementsByName("gender");
+                var number_of_radios = radios.length;
+
+                for(var i = 0; i < number_of_radios; i++){
+                    if(radios[i].checked){
+                        alert(radios[i].value);
+                    }
+                }
+            }
+
+            function getRangeValue(){
+                alert(document.getElementById("range-demo").value);
+            }
+
+            function getSearchValue(){
+                alert(document.getElementById("search-demo").value);
+            }
+
+            function getTelValue(){
+                alert(document.getElementById("tel-demo").value);
+            }
+
+            function getTimeValue(){
+                alert(document.getElementById("time-demo").value);
+            }
+
+            function getURLValue(){
+                alert(document.getElementById("url-demo").value);
+            }
+
+            function getWeekValue(){
+                alert(document.getElementById("week-demo").value);
+            }
+
+            function getDropValue(){
+                alert(document.getElementById("dropdown-demo").value);
+            }
+
+            function getMultiValue(){
+                var _options = document.getElementById("multi-dropdown-demo").options;
+                var _options_count = _options.length;
+                var value = [];
+                for( var i = 0; i < _options_count; i++){
+                    if(_options[i].selected){
+                        value.push(_options[i].value);
+                    }
+                }
+                alert(JSON.stringify(value));
+
+            }
+            
+
+        </script>
+
+
+    </body>
+</html>

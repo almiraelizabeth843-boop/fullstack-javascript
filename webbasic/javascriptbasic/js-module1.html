@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Js module 1</title>
+    </head>
+    <body>
+        <h2>Display Output</h2>
+        <ul>
+            <li>Console</li>
+            <li>Dialog boxes</li>
+            <li>Writing to HTML Elements</li>
+            <li>Writing to Browser Window</li>
+        </ul>
+
+        <h2>Using console</h2>
+        <script type="text/javascript">
+            var x = 10;
+            var y = 5;
+            var sum = x + y;
+            console.log(sum);
+        </script>
+
+        <h2>Using Dialog boxes</h2>
+        <button type="button" onclick="sumNum();">Show Dialog</button>
+        <script type="text/javascript">
+            function sumNum(){
+                var x = 20;
+                var y = 4;
+                var sum = x + y;
+                alert(sum);
+            }
+        </script>
+
+
+        <h2>Writing to HTML Elements</h2>
+        <p id="sum-demo">Sum output</p>
+        <button onclick="writeOutput()">Write Output</button>
+        <script type="text/javascript">
+            function writeOutput(){
+                var x = 10;
+                var y = 4;
+                var sum = x + y;
+                document.getElementById("sum-demo").innerHTML = sum;
+                //write sum to html p element
+            }
+        </script>
+
+
+
+        <h2>Writing to browser window</h2>
+        <button onclick="writeBrowser()">Write Browser</button>
+        <script type="text/javascript">
+            function writeBrowser(){
+                var x = 5;
+                var y = 6;
+                var sum = x + y;
+                document.write(sum);
+            }
+        </script>
+
+
+        <!--Javascript statement-->
+        <h2>javascript statement</h2>
+        <p id="p-demo1"></p>
+        <p id="p-demo2"></p>
+        <button onclick="writeParagraph()">Write Paragraph</button>
+        <script type="text/javascript">
+            function writeParagraph(){
+                document.getElementById("p-demo1").innerText = "Hello";
+                document.getElementById("p-demo2").innerText = "World";
+            }
+        </script>
+
+        <h2>Comments</h2>
+        <script type="text/javascript">
+            //single line comment
+
+            /*multiline 
+            comment
+            section*/
+
+            console.log("I'm a mermaid");
+            document.write("I'm a mermaid");
+        </script>
+        <br/>
+
+        <!--javascript မှာ နာမည်ပေါင်းနည်း-->
+        <script type="text/javascript">
+            var firstName = "Ko";
+            var lastName = "Ko";
+            var fullname = firstName + " " + lastName;
+            document.write(fullname);
+        </script>
+
+        <h2>Datatypes</h2>
+        <script type="text/javascript">
+            var name = "KO KO";
+            document.write("String datatype: " + name);
+            var num = 19;
+            document.write("/  Number datatype: " + num);
+        </script>
+    
+    </body>
+</html>

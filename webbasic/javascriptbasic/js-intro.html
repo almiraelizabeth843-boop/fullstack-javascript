@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JS intro with HTML</title>
+       
+    </head>
+    <body>
+
+        <h2>Show Alert box</h2>
+        <button id="alert-btn">Show Alert Box</button>
+        
+        <h2>Change Content</h2>
+        <p id="change-content-demo">I'm first content</p>
+        <button id="change-content-btn">Change</button>
+
+        <h2>Change attribute value</h2>
+        <img src="images/133976346883337026.jpg" id="change-attr-demo" style="width: 10%;"/>
+        <button id="change-attr-btn">Change Image</button>
+
+        <h2>Change style</h2>
+        <p id="change-sty-demo">I'm change style</p>
+        <button id="change-sty-btn">Change Style</button>
+
+        <h2>Hide and show</h2>
+        <div id="hide-show-demo" style="width: 100px;height: 100px;background-color: rgb(47, 216, 216);padding: 20px;">
+            I'm hide and show box
+        </div>
+        <button type="button" onclick="show();">Show</button>
+        <button type="button" onclick="hide();">Hide</button>
+
+
+        <script type="text/javascript">
+            //anonymous function --> function ကိုနာမည်မပေးဘဲရေးရင် အဲ့လိုခေါ်
+            document.getElementById("alert-btn").onclick = function(){
+                alert("I'm a alert box");
+            }
+
+            //js for change content
+            document.getElementById("change-content-btn").onclick = function(){
+                document.getElementById("change-content-demo").innerText = "I'm second content";
+            }
+
+            //js for change attribute
+            document.getElementById("change-attr-btn").onclick = function(){
+                document.getElementById("change-attr-demo").src="images/133989671241907142.jpg";
+            }
+
+            //js for change style
+            document.getElementById("change-sty-btn").onclick = function(){
+                document.getElementById("change-sty-demo").style.color = "brown";
+                document.getElementById("change-sty-demo").style.fontWeight = "bold";
+                document.getElementById("change-sty-demo").style.fontSize = "50px";
+            }
+
+            //js for show and hide
+            function show(){
+                document.getElementById("hide-show-demo").style.display = "block";
+            }
+            function hide(){
+                document.getElementById("hide-show-demo").style.display = "none";
+            }
+
+        </script>
+
+    </body>
+</html>
