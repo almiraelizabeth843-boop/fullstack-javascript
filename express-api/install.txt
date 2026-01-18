@@ -1,0 +1,6 @@
+npm init -y
+npm install express --save 
+npm install nodemon typescript tsx ts-node  @types/node --save-dev
+npx tsc --init
+npm i @types/express --save-dev
+npm install dotenv
