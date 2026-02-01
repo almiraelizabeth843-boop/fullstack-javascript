@@ -2,5 +2,35 @@ npm init -y
 npm install express --save 
 npm install nodemon typescript tsx ts-node  @types/node --save-dev
 npx tsc --init
-npm i @types/express --save-dev
+** npm i @types/express --save-dev
 npm install dotenv
+
+1. npm init -y
+2. npm install express --save 
+3. npm install nodemon typescript tsx ts-node  @types/node --save-dev
+4. npx tsc --init
+5. npm install dotenv cors
+6. npm install @types/cors --save-dev
+
+Setup Prisma + Better-auth + Neon PostgreSQL
+
+- npm install prisma tsx @types/pg --save-dev
+- npm install @prisma/client @prisma/adapter-pg dotenv pg
+- npx prisma init --output ../src/generated/prisma
+- npx prisma generate
+
+- npm install ws @prisma/adapter-neon @neondatabase/serverless
+- npm install -D @types/ws
+- npm i -D bufferutil
+
+*** Update your Prisma Client instance: 
+Link: https://neon.com/docs/guides/prisma
+
+- npm install better-auth
+- npx @better-auth/cli@latest secret
+- npx @better-auth/cli generate
+- npx prisma migrate dev --name add-auth-models
+- npx prisma generate
+
+Link: https://www.prisma.io/docs/guides/betterauth-nextjs
+Link: https://www.better-auth.com/docs/integrations/expressခူခ
