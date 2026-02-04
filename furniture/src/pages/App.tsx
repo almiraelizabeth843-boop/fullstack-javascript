@@ -1,30 +1,44 @@
+import { useEffect } from "react";
+import { useNavigate } from "react-router";
+
 import { Button } from "@/components/ui/button";
-import { signUp, signIn } from "@/lib/auth-client";
+import { useSession, signOut } from "@/lib/auth-client";
+
+
 
 function App() {
-  const handleSignUp = async () => {
-    const name = "John Doe";
-    const email = "john.doe@example.com";
-    const password = "securePassword123";
 
-    const { data, error } = await signUp.email({ name, email, password });
-    console.log("data", data);
-    console.log("error", error);
-  };
+  const navigate = useNavigate();
+  const { data: session, isPending } = useSession();
+  
+  useEffect(() => {
+    // console.log("Session data:", session);   #copilot က session data ကို ရှိမရှိ စစ်ပေးတာ ဒါကိုတော့မသုံးပါဘူး
+    if (!isPending && !session) {
+      // Redirect to login page if not authenticated
+      // window.location.href = "/login";         --> ဒီလို redirect မလုပ်ပါဘူး ဘာလို့ဆို ငါတို့က react router ကိုသုံးနေတာမို့ useNavigate နဲ့လုပ်မှာ
+      navigate("/login");
+    }
+  }, [session, isPending, navigate]);
 
-  const handleSignIn = async () => {
-    const email = "john.doe@example.com";
-    const password = "securePassword123";
-    const { data, error } = await signIn.email({ email, password });
-    console.log("data", data);
-    console.log("error", error);
-  };
+   if (isPending) {
+     return <div>Loading...</div>;
+   }
+
+   if (!session) {
+     return null;
+   }
+  
 
   return (
     <>
       <h1>Welcome to the Furniture Store</h1>
-      <Button onClick={handleSignUp}>Sign Up</Button>
-      <Button onClick={handleSignIn}>Sign In</Button>
+      {session && <p>Hello, {session.user.name}!</p>}
+      {session && <p>Your email: {session.user.email}</p>}
+      {session ? (
+        <Button onClick={() => signOut()}>Sign Out</Button>
+      ) : (
+        <p>Please sign in to access your account.</p>
+      )}
     </>
   );
 }
