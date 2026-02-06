@@ -1,8 +1,9 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import * as z from "zod";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useState } from "react";
+import {Eye, EyeOff } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -16,33 +17,92 @@ import {
   FieldSeparator,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { signIn } from "@/lib/auth-client";
+import { signIn, signUp, emailOtp } from "@/lib/auth-client";
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupButton,
+  InputGroupInput,
+} from "@/components/ui/input-group";
 
-const formSchema = z.object({
-  phone: z
-    .string()
-    .min(7, "Phone number is too short.")
-    .max(12, "Phone number is too long.")
-    .regex(/^\d+$/, "Phone number is invalid."),
-});
+const formSchema = z
+  .object({
+    name: z.string().min(2, "Name must be at least 2 characters long."),
+    email: z.email("Please enter a valid email address."),
+    password: z
+      .string()
+      .min(8, "Password must be 8 digit long.")
+      .max(50, "Password must be 50 characters or less.")
+      .regex(/[0-9]/, "Password must contain at least one digit.")
+      .regex(/[a-z]/, "Password must contain at least one lowercase character.")
+      .regex(
+        /[A-Z]/,
+        "Password must contain at least one uppercase character.",
+      ),
+    confirmPassword: z.string(),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords do not match.",
+    path: ["confirmPassword"],
+  });
 
 export function SignupForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
+  const navigate = useNavigate()
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
       resolver: zodResolver(formSchema),
       defaultValues: {
-        phone: "",
+        name: "",
+        email: "",
+        password: "",
+        confirmPassword:"",
       },
     });
   
-  function onSubmit(data: z.infer<typeof formSchema>) {
-     console.log(data);
-      }
+  async function onSubmit(data: z.infer<typeof formSchema>) {
+    //  console.log(data);
+    setError(null);
+    setIsLoading(true);
+    try {
+      const { error } = await signUp.email({
+      email: data.email,
+      password: data.password,
+      name: data.name
+    });
+
+    if (error) {
+      setError(error.message ||"Failed to create account.");
+      return;
+    };
+
+    const otpResult = await emailOtp.sendVerificationOtp({
+      email: data.email,
+      type: "email-verification",
+    });
+
+    if (otpResult.error) {
+      setError(otpResult.error.message || "Failed to send verification OTP");;
+      return;
+    };
+
+    navigate(`/register/verify-otp?email=${data.email}`);
+
+    } catch (error: unknown) {
+      setError(
+        error instanceof Error ? error.message : "Failed to create account",
+      );
+    }
+    finally {
+      setIsLoading(false);
+    };    
+  };
 
   async function handleGoogleSignIn() {
       setError(null);
@@ -77,38 +137,135 @@ export function SignupForm({
               <div className="flex flex-col items-center gap-2 text-center">
                 <h1 className="text-2xl font-bold">Create your account</h1>
                 <p className="text-muted-foreground text-sm text-balance">
-                  Enter your phone number below to create your account
+                  Enter your email below to create your account
                 </p>
               </div>
               <Controller
-                name="phone"
+                name="name"
                 control={form.control}
                 render={({ field, fieldState }) => (
                   <Field data-invalid={fieldState.invalid}>
                     <FieldLabel htmlFor="form-rhf-demo-title">
-                      Phone Number
+                      Full Name
                     </FieldLabel>
                     <Input
                       {...field}
                       id="form-rhf-demo-title"
                       aria-invalid={fieldState.invalid}
                       type="text"
-                      placeholder="09123456789"
+                      placeholder="John Doe"
                       autoComplete="off"
                     />
                     {fieldState.invalid && (
                       <FieldError errors={[fieldState.error]} />
                     )}
-                    <FieldDescription>
-                      We&apos;ll use this to contact you. We will not share your
-                      phone number with anyone else.
-                    </FieldDescription>
+                  </Field>
+                )}
+              />
+              <Controller
+                name="email"
+                control={form.control}
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel htmlFor="form-rhf-demo-title">
+                      Email Address
+                    </FieldLabel>
+                    <Input
+                      {...field}
+                      id="form-rhf-demo-title"
+                      aria-invalid={fieldState.invalid}
+                      type="email"
+                      placeholder="you@example.com"
+                      autoComplete="email"
+                    />
+                    {fieldState.invalid && (
+                      <FieldError errors={[fieldState.error]} />
+                    )}
+                  </Field>
+                )}
+              />
+              <Controller
+                name="password"
+                control={form.control}
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel htmlFor="form-rhf-demo-title">
+                      Password
+                    </FieldLabel>
+                    <InputGroup>
+                      <InputGroupInput
+                        {...field}
+                        aria-invalid={fieldState.invalid}
+                        autoComplete="off"
+                        type={showPassword ? "text" : "password"}
+                        required
+                      />
+                      <InputGroupAddon align="inline-end">
+                        <InputGroupButton
+                          aria-label={
+                            showPassword ? "Hide password" : "Show password"
+                          }
+                          title={
+                            showPassword ? "Hide password" : "Show password"
+                          }
+                          size="icon-xs"
+                          onClick={() =>
+                            setShowPassword((prevState) => !prevState)
+                          }
+                        >
+                          {showPassword ? <EyeOff /> : <Eye />}
+                        </InputGroupButton>
+                      </InputGroupAddon>
+                    </InputGroup>
+                    {fieldState.invalid && (
+                      <FieldError errors={[fieldState.error]} />
+                    )}
+                  </Field>
+                )}
+              />
+
+              <Controller
+                name="confirmPassword"
+                control={form.control}
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel htmlFor="form-rhf-demo-title">
+                      Confirm Password
+                    </FieldLabel>
+                    <InputGroup>
+                      <InputGroupInput
+                        {...field}
+                        aria-invalid={fieldState.invalid}
+                        autoComplete="off"
+                        type={showPasswordConfirm ? "text" : "password"}
+                        required
+                      />
+                      <InputGroupAddon align="inline-end">
+                        <InputGroupButton
+                          aria-label={
+                            showPasswordConfirm ? "Hide password" : "Show password"
+                          }
+                          title={
+                            showPasswordConfirm ? "Hide password" : "Show password"
+                          }
+                          size="icon-xs"
+                          onClick={() =>
+                            setShowPasswordConfirm((prevState) => !prevState)
+                          }
+                        >
+                          {showPasswordConfirm ? <EyeOff /> : <Eye />}
+                        </InputGroupButton>
+                      </InputGroupAddon>
+                    </InputGroup>
+                    {fieldState.invalid && (
+                      <FieldError errors={[fieldState.error]} />
+                    )}
                   </Field>
                 )}
               />
 
               <Field>
-                <Button type="submit" form="signup-form">
+                <Button type="submit" form="signup-form" disabled={isLoading}>
                   Create Account
                 </Button>
               </Field>

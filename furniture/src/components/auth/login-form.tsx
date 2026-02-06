@@ -63,8 +63,7 @@ export function LoginForm({
         callbackURL: "http://localhost:5173",
      });
       
-    } catch (error: unknown) {
-      console.log(error);      
+    } catch (error: unknown) {         
       setError(
         error instanceof Error
           ? error.message
@@ -133,8 +132,8 @@ export function LoginForm({
                 />
                 <InputGroupAddon align="inline-end">
                   <InputGroupButton
-                    aria-label="Copy"
-                    title="Copy"
+                    aria-label = {showPassword ? "Hide password" : "Show password"}
+                    title={showPassword ? "Hide password" : "Show password"}
                     size="icon-xs"
                     onClick={() => setShowPassword((prevState) => !prevState)}
                   >

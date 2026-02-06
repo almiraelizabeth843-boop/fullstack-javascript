@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link, useSearchParams } from "react-router";
 import { REGEXP_ONLY_DIGITS } from "input-otp";
 import { useState } from "react";
 
@@ -24,18 +24,20 @@ import {
 
 
 export function OTPForm({ ...props }: React.ComponentProps<typeof Card>) {
+  const searchParams = useSearchParams();
   const [value, setValue] = useState("");
- 
-    
-    function onSubmit() {
-      console.log(value);
-        }
+  const email = searchParams[0].get("email") || "";
+     
+     function onSubmit(e: React.FormEvent) {
+       e.preventDefault();
+       console.log(value);
+     }
  
 return (
     <Card {...props}>
       <CardHeader className="text-center">
         <CardTitle className="text-xl">Enter verification code</CardTitle>
-        <CardDescription>We sent a 6-digit code to your phone.</CardDescription>
+        <CardDescription>We sent a 6-digit code to your email.</CardDescription>
       </CardHeader>
       <CardContent>
         <form id="otp-form" onSubmit={onSubmit}>
