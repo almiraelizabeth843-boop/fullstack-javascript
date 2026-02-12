@@ -263,11 +263,12 @@ export function SignupForm({
                   </Field>
                 )}
               />
-
+              {error && <p className="mt-2 text-sm text-red-600">{error}</p>}
               <Field>
                 <Button type="submit" form="signup-form" disabled={isLoading}>
                   Create Account
                 </Button>
+                
               </Field>
               <FieldSeparator className="*:data-[slot=field-separator-content]:bg-card">
                 Or continue with
@@ -289,7 +290,7 @@ export function SignupForm({
                   <span className="sr-only">Sign up with Google</span>
                 </Button>
               </Field>
-              {error && <p className="mt-2 text-sm text-red-600">{error}</p>}
+              
               <FieldDescription className="text-center">
                 Already have an account? <Link to="/login">Sign in</Link>
               </FieldDescription>
