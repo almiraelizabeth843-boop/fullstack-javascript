@@ -1,5 +1,5 @@
 import express from "express";
-import { toNodeHandler } from "better-auth/node";
+import { fromNodeHeaders, toNodeHandler } from "better-auth/node";
 import cors from "cors";
 
 import { auth } from "./lib/auth";
@@ -20,6 +20,13 @@ app.use(express.json());
 
 app.get("/", (req, res) => {
   res.send("Hello Full Stack Developer!");
+});
+
+app.get("/api/me", async (req, res) => {
+  const session = await auth.api.getSession({
+    headers: fromNodeHeaders(req.headers),
+  });
+  return res.json(session);
 });
 
 export default app;

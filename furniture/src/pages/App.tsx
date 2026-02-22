@@ -28,6 +28,27 @@ function App() {
      return null;
    }
   
+   const testAuth = async () => {
+    try {
+      const response = await fetch("http://localhost:8080/api/me", {
+        //method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        }
+      });
+
+      if (!response.ok) {
+        console.error("Calling API Failed");
+      }
+
+      const result = await response.json();
+      console.log("Better-auth:", result);
+
+    } catch {
+      console.error("Calling API Failed");
+    }
+   };
 
   return (
     <>
@@ -39,6 +60,7 @@ function App() {
       ) : (
         <p>Please sign in to access your account.</p>
       )}
+      <Button onClick={testAuth}>Test Auth</Button>
     </>
   );
 }
