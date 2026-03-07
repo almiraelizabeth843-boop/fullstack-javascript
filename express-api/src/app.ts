@@ -3,6 +3,7 @@ import { fromNodeHeaders, toNodeHandler } from "better-auth/node";
 import cors from "cors";
 
 import { auth } from "./lib/auth";
+import { authGuard } from "./middleware/auth";
 
 const app = express();
 
@@ -18,8 +19,12 @@ app.all("/api/auth/*splat", toNodeHandler(auth));
 
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.send("Hello Full Stack Developer!");
+app.get("/", authGuard, (req, res) => {
+  //res.send("Hello Full Stack Developer!");
+  res.status(200).json({
+    message: "Hello FullStack Developer!",
+    session: (req as any).session.user,
+  });
 });
 
 app.get("/api/me", async (req, res) => {

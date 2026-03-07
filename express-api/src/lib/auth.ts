@@ -1,6 +1,6 @@
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
-import { emailOTP } from "better-auth/plugins";
+import { emailOTP, admin } from "better-auth/plugins";
 import { createAuthMiddleware, APIError } from "better-auth/api";
 
 import prisma from "./prisma";
@@ -17,6 +17,7 @@ export const auth = betterAuth({
     requireEmailVerification: true,
   },
   plugins: [
+    admin(),
     emailOTP({
       async sendVerificationOTP({ email, otp, type }) {
         const subjects: Record<string, string> = {
@@ -46,12 +47,12 @@ export const auth = betterAuth({
         ctx.path == "/change-password"
       ) {
         const password = ctx.body.password || ctx.body.newPassword;
-         const { error } = passwordSchema.safeParse(password);
+        const { error } = passwordSchema.safeParse(password);
         if (error) {
           throw new APIError("BAD_REQUEST", {
             message: "Password is not strong enough!",
           });
-        }      
+        }
       }
     }),
   },
