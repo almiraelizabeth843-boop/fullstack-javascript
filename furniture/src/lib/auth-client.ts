@@ -1,5 +1,5 @@
 import { createAuthClient } from "better-auth/react";
-import { emailOTPClient } from "better-auth/client/plugins";
+import { emailOTPClient, adminClient } from "better-auth/client/plugins";
 
 export const { signIn, signUp, signOut, useSession, emailOtp } = createAuthClient({
   /** The base URL of the server (optional if you're using the same domain) */
@@ -7,5 +7,5 @@ export const { signIn, signUp, signOut, useSession, emailOtp } = createAuthClien
   fetchOptions: {
     credentials: "include", // Include cookies in requests
   },
-  plugins: [emailOTPClient()],
+  plugins: [adminClient(), emailOTPClient()],
 });
