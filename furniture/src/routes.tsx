@@ -7,8 +7,7 @@ import Loginscreen from "./pages/auth/Login";
 import SignupPage from "./pages/auth/signup";
 import AuthRootLayout from "./components/layout/AuthRootLayout";
 import VerifyOtpPage from "./pages/auth/verifyotp";
-// import ConfirmPasswordPage from "./pages/auth/confirm_password";
-
+import FavoritesPage from "./pages/Favorites";
 
 export const router = createBrowserRouter([
   {
@@ -18,7 +17,7 @@ export const router = createBrowserRouter([
     children: [
       { index: true, Component: Homescreen }, // '/'
       { path: "about", Component: Aboutscreen }, // '/about'
-         
+      { path: "favorites", Component: FavoritesPage }, // '/favorites'
     ],
   },
 
@@ -29,7 +28,6 @@ export const router = createBrowserRouter([
     children: [
       { index: true, Component: SignupPage }, // "/register"
       {path: "verify-otp", Component: VerifyOtpPage}, // "/register/verify-otp"
-      // {path: "confirm-password", Component: ConfirmPasswordPage}, // "/register/confirm-password"
     ],
   },
   
