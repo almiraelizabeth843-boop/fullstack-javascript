@@ -5,7 +5,7 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client"
+  provider = "prisma-client-js"
   output   = "../src/generated/prisma"
 }
 
@@ -28,6 +28,7 @@ model User {
   banned     Boolean?  @default(false)
   banReason  String?
   banExpires DateTime?
+  favorites  Favorite[]
 
   @@unique([email])
   @@map("user")
@@ -85,7 +86,7 @@ model Verification {
 
 model Category {
   id       String    @id @default(cuid())
-  name     String    @db.VarChar(100)
+  name     String    @unique @db.VarChar(100)
   products Product[]
 
   @@map("category")
@@ -93,7 +94,7 @@ model Category {
 
 model Type {
   id       String    @id @default(cuid())
-  name     String
+  name     String    @unique
   products Product[]
 
   @@map("type")
@@ -119,6 +120,7 @@ model Product {
   category    Category      @relation(fields: [categoryId], references: [id])
   type        Type          @relation(fields: [typeId], references: [id])
   images      Image[]
+  favorites   Favorite[]
 
   @@map("product")
 }
@@ -131,4 +133,18 @@ model Image {
 
   @@index([productId])
   @@map("image")
+}
+
+model Favorite {
+  id        String   @id @default(cuid())
+  userId    String
+  productId String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@unique([userId, productId])
+  @@index([userId])
+  @@index([productId])
+  @@map("favorite")
 }

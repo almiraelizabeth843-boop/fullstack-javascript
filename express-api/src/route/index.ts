@@ -7,6 +7,6 @@ import { authGuard, adminAuth } from "../middleware/auth";
 const router = express.Router();
 
 router.use("/api/v1/admin", adminAuth, adminRoute);
-router.use("/api/v1", authGuard, apiRoute);
+router.use("/api/v1", apiRoute);
 
 export default router;

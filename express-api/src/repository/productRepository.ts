@@ -1,7 +1,23 @@
 import prisma from "../lib/prisma";
 
-export const getProducts = async () => {
-    return await prisma.product.findMany();
+export const getProducts = async (limit: number = 10, cursor?: string, userId?: string) => {
+    const query: any = {
+        take: limit,
+        orderBy: { id: 'asc' },
+        include: {
+            images: true,
+            category: true,
+            type: true,
+            ...(userId ? { favorites: { where: { userId } } } : {}),
+        }
+    };
+
+    if (cursor) {
+        query.cursor = { id: cursor };
+        query.skip = 1;
+    }
+
+    return await prisma.product.findMany(query);
 };
 
 export const createProduct = async (data: any) => {
