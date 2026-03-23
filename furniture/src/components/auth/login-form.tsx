@@ -131,7 +131,7 @@ export function LoginForm({
               <div className="flex items-center">
                 <FieldLabel htmlFor="form-rhf-demo-title">Password</FieldLabel>
                 <Link
-                  to="#"
+                  to="/forgot-password"
                   className="ml-auto text-sm underline-offset-4 hover:underline"
                 >
                   Forgot your password?

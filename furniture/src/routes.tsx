@@ -8,6 +8,8 @@ import SignupPage from "./pages/auth/signup";
 import AuthRootLayout from "./components/layout/AuthRootLayout";
 import VerifyOtpPage from "./pages/auth/verifyotp";
 import FavoritesPage from "./pages/Favorites";
+import ForgotPasswordPage from "./pages/auth/ForgotPassword";
+import ResetPasswordPage from "./pages/auth/ResetPassword";
 
 export const router = createBrowserRouter([
   {
@@ -22,6 +24,8 @@ export const router = createBrowserRouter([
   },
 
   {path: "/login", Component: Loginscreen},
+  {path: "/forgot-password", Component: ForgotPasswordPage},
+  {path: "/reset-password", Component: ResetPasswordPage},
   {
     path: "/register",
     Component: AuthRootLayout,
