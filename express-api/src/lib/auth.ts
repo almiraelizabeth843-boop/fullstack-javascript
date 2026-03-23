@@ -15,6 +15,23 @@ export const auth = betterAuth({
     enabled: true,
     // maxPasswordLength: 50,  //password length ကို 50 character ထိ သတ်မှတ်ခြင်း
     requireEmailVerification: true,
+    sendResetPassword: async ({ user, url, token }, request) => {
+      console.log(`Password reset requested for: ${user.email}`);
+      console.log(`Generated reset URL: ${url}`);
+      
+      const text = `Hello,\n\nWe received a request to reset your password for your Furniture Shop account. You can set a new password by clicking the link below:\n\n${url}\n\nIf you did not request this, please ignore this email. This link will expire in 60 minutes.\n\nBest regards,\nFurniture Shop`;
+
+      // Better Auth recommends NOT awaiting the email sending to prevent timing attacks
+      sendEmail({
+        to: user.email,
+        subject: "Reset your password",
+        text: text,
+      }).then(res => {
+        console.log("Email sent successfully:", res);
+      }).catch(err => {
+        console.error("Failed to send reset email:", err);
+      });
+    },
   },
   plugins: [
     admin(),
