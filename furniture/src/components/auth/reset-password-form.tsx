@@ -70,8 +70,12 @@ export function ResetPasswordForm({
         toast.success("Password reset successful! You can now login.");
         navigate("/login");
       }
-    } catch (err) {
-      toast.error("An unexpected error occurred.");
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        toast.error(err.message);
+      } else {
+        toast.error("An unexpected error occurred.");
+      }
     } finally {
       setIsLoading(false);
     }

@@ -49,8 +49,12 @@ export function ForgotPasswordForm({
         setIsSubmitted(true);
         toast.success("Reset email sent! Please check your inbox.");
       }
-    } catch (err) {
-      toast.error("An unexpected error occurred.");
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        toast.error(err.message);
+      } else {
+        toast.error("An unexpected error occurred.");
+      }
     } finally {
       setIsLoading(false);
     }
